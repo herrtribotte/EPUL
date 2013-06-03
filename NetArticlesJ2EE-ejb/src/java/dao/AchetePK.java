@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package metier;
+package dao;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Clem
+ * @author Michael
  */
 @Embeddable
 public class AchetePK implements Serializable {

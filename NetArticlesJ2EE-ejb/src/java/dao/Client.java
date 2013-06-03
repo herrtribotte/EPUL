@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package metier;
+package dao;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Clem
+ * @author Michael
  */
 @Entity
 @Table(name = "client", catalog = "net_articles", schema = "")
@@ -54,7 +54,7 @@ public class Client implements Serializable {
     private String pwdClient;
     @JoinColumn(name = "id_categorie", referencedColumnName = "id_categorie")
     @ManyToOne(optional = false)
-    private Categorie idCategorie;
+    private Categorie categorie;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
     private Collection<Achete> acheteCollection;
 
@@ -119,12 +119,12 @@ public class Client implements Serializable {
         this.pwdClient = pwdClient;
     }
 
-    public Categorie getIdCategorie() {
-        return idCategorie;
+    public Categorie getCategorie() {
+        return categorie;
     }
 
-    public void setIdCategorie(Categorie idCategorie) {
-        this.idCategorie = idCategorie;
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
     @XmlTransient

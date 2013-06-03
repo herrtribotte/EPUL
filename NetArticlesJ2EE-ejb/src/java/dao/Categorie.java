@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package metier;
+package dao;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Clem
+ * @author Michael
  */
 @Entity
 @Table(name = "categorie", catalog = "net_articles", schema = "")
