@@ -1,0 +1,41 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<form class="form-horizontal">
+    <legend>Détails de l'article :</legend> 
+    <div class="control-group">
+        <label class="control-label" for="infoNumero">N° Article:</label>
+        <div class="controls">
+            <p id="infoNumero"></p>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="infoTitre">Titre:</label>
+        <div class="controls">
+            <p id="infoTitre"></p>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="infoResume">Résumé:</label>
+        <div class="controls">
+            <p id="infoResume"></p>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="infoPrix">Prix:</label>
+        <div class="controls">
+            <p id="infoPrix"></p>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="infoDatePub">Date de publication:</label>
+        <div class="controls">
+            <p id="infoDatePub"></p>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="infoDomaine">Domaine</label>
+        <div class="controls">
+            <p id="infoDomaine"></p>
+        </div>
+    </div>
+</form>
