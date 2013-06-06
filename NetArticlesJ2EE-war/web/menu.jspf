@@ -11,15 +11,24 @@
                         <div class="nav-collapse collapse navbar-responsive-collapse">
                             <ul class="nav">
                                 <li class="active">
-                                    <a href="#">Acceuil</a>
+                                    <a href="accueil.do">Acceuil</a>
                                 </li>
                                 <li>
-                                    <a href="#">Rechercher</a>
+                                    <a href="rechercher.do">Rechercher</a>
+                                </li>
+                                <li>
+                                    <a href="moncompte.do">Mon compte</a>
+                                </li>
+                                <li>
+                                    <a href="mesarticles.do">Mes articles</a>
+                                </li>
+                                <li>
+                                    <a href="monpanier.do">Mon panier</a>
                                 </li>
                             </ul>
                             <ul class="nav pull-right">
                                 <li class="divider-vertical">
-                                    <a href="#">Se connecter</a>
+                                    <a href="connecter.do">Se connecter</a>
                                 </li>
                             </ul>
                         </div>

@@ -7,6 +7,7 @@ package services;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,9 +29,8 @@ public abstract class AbstractService<T> {
     }
 
     public List<T> rechercherTout() {
-        javax.persistence.criteria.CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(entityClass));
-        return em.createQuery(cq).getResultList();
+        Query query = em.createQuery("from " + entityClass.getName());
+        return query.getResultList();
     }
     
     public void creer(T entity) {

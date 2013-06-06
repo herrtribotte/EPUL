@@ -36,7 +36,13 @@ public class ArticleService extends AbstractService<Article>{
     }
     
     public Article rechercherDernierArticle() {
-        Query query = em.createQuery("SELECT a FROM article a WHERE dateArticle = SELECT MAX(dateArticle) FROM article");
-        return (Article) query.getSingleResult();
+        Query query = em.createQuery("SELECT a FROM Article a WHERE a.dateArticle = (SELECT MAX(a1.dateArticle) FROM Article a1)");
+        return (Article) query.getResultList().get(0);
+    }
+
+    public List<Article> rechercherParDomaine(int idDomaine) {
+        Query query = em.createQuery("SELECT a FROM Article a WHERE a.domaine.idDomaine = :idDomaine");
+        query.setParameter("idDomaine", idDomaine);
+        return (List<Article>) query.getResultList();
     }
 }

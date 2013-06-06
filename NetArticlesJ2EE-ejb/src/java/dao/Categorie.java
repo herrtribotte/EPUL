@@ -33,7 +33,7 @@ public class Categorie implements Serializable {
     @Size(max = 80)
     @Column(name = "libcategorie")
     private String libcategorie;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategorie")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
     private Collection<Client> clientCollection;
 
     public Categorie() {

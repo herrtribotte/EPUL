@@ -35,7 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="article" items="${articlesR}">
+                        <c:forEach var="article" items="${articles}">
                             <tr>
                                 <th>
                                     ${article.titre}
@@ -44,7 +44,7 @@
                                     ${article.prix}
                                 </th>
                                 <th>
-                                    <button onclick="${article.id}" type="button" class="btn">Retirer</button>
+                                    <button onclick="${article.idArticle}" type="button" class="btn">Retirer</button>
                                 </th>
                             </tr>
                         </c:forEach>

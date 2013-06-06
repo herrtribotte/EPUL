@@ -33,7 +33,7 @@ public class Domaine implements Serializable {
     @Size(max = 80)
     @Column(name = "libdomaine")
     private String libdomaine;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDomaine")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "domaine")
     private Collection<Article> articleCollection;
 
     public Domaine() {
