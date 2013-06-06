@@ -4,12 +4,11 @@
  */
 package services;
 
-import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import dao.Achete;
+import dao.AchetePK;
+import dao.Article;
 import dao.Client;
 import java.util.Date;
 import javax.ejb.EJB;
@@ -34,6 +33,9 @@ public class AcheteService extends AbstractService<Achete> {
     @EJB
     ClientService clientService;
     
+    @EJB
+    ArticleService articleService;
+    
     
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void ajouterAchat(Integer idClient, Integer idArticle, Date uneDate)throws Exception {
@@ -41,12 +43,12 @@ public class AcheteService extends AbstractService<Achete> {
         try {
             Achete unAchat = new Achete();
             Client unClient = clientService.rechercherParId(idClient);
-            reservation.setAdherent(unAdherent);
-            Oeuvre uneOeuvre =  oeuvreFacade.Lire_Oeuvre_Id(idOeuvre);
-            reservation.setStatut("Attente");
-            reservation.setOeuvre(uneOeuvre);
-            reservation.setReservationPK(new ReservationPK(uneDate, idOeuvre));
-            super.
+            unAchat.setClient(unClient);
+            Article unArticle = articleService.rechercherParId(idArticle);
+            unAchat.setArticle(unArticle);
+            unAchat.setDateAchat(uneDate);
+            unAchat.setAchetePK(new AchetePK(idClient, idArticle));
+            super.creer(unAchat);
         } catch (Exception e) {
             throw e;
         }

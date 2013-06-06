@@ -9,14 +9,14 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import dao.Achete;
 import dao.Article;
-import dao.Client;
-import java.util.Date;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 
 /**
  *
@@ -33,5 +33,10 @@ public class ArticleService extends AbstractService<Article>{
     
     public ArticleService() {
         super(Article.class);
+    }
+    
+    public Article rechercherDernierArticle() {
+        Query query = em.createQuery("SELECT a FROM article a WHERE dateArticle = SELECT MAX(dateArticle) FROM article");
+        return (Article) query.getSingleResult();
     }
 }

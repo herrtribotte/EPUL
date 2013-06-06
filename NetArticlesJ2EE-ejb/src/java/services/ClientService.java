@@ -4,16 +4,12 @@
  */
 package services;
 
-import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import dao.Achete;
 import dao.Categorie;
 import dao.Client;
-import java.math.BigDecimal;
-import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
