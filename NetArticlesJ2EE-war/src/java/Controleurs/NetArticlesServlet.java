@@ -60,6 +60,9 @@ public class NetArticlesServlet extends HttpServlet {
             if (demande.equalsIgnoreCase("rechercher.do")) {
                 pageReponse = rechercher(request);
             }
+            else if (demande.equalsIgnoreCase("article.do")) {
+                pageReponse = article(request);
+            }
             else if (demande.equalsIgnoreCase("deconnexion.do")) {
                pageReponse = deconnexion(request);
             }
@@ -333,6 +336,24 @@ public class NetArticlesServlet extends HttpServlet {
                 pageReponse = "/compteUtilisateur.jsp";
             }
             request.setAttribute("lstCategories", categorieService.rechercherTout());
+            return pageReponse;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    private String article(HttpServletRequest request) throws Exception {
+        String pageReponse;
+        try {
+            String id_article = request.getParameter("id");
+            int idArticle = Integer.valueOf(id_article);
+            Article article = articleService.rechercherParId(idArticle);
+            
+            request.setAttribute("codeDomaine", article.getDomaine().getIdDomaine());
+            request.setAttribute("article", article);
+            
+            pageReponse = "/article.jsp";
+            
             return pageReponse;
         } catch (Exception e) {
             throw e;
