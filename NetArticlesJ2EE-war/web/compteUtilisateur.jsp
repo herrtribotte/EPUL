@@ -19,36 +19,36 @@
             <div class="span4">
             </div>
             <div class="span4">
-                <form class="form-horizontal">
+                <form method="POST" action="enregistrerclient.do" class="form-horizontal">
                     <legend>Vos informations :</legend> 
                     <div class="control-group">
                         <label class="control-label" for="inputIdentite">Identité:</label>
                         <div class="controls">
-                            <input id="inputIdentite" type="text" name="txtIdentiteClient" value="${utilisateurR.identite}"/>
+                            <input id="inputIdentite" type="text" name="txtIdentiteClient" value="${client.identite}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputAdresse">Adresse:</label>
                         <div class="controls">
-                            <input id="inputAdresse" type="text" name="txtAdresseClient" value="${utilisateurR.adresse}"/>
+                            <input id="inputAdresse" type="text" name="txtAdresseClient" value="${client.adresse}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputLogin">Login:</label>
                         <div class="controls">
-                            <input id="inputLogin" type="text" name="txtLoginClient" value="${utilisateurR.login}"/>  
+                            <input id="inputLogin" type="text" name="txtLoginClient" value="${client.login}"/>  
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputPwd">Mot de passe:</label>
                         <div class="controls">
-                            <input id="inputPwd" type="text" name="txtPwdClient" value="${utilisateurR.pwd}"/> 
+                            <input id="inputPwd" type="text" name="txtPwdClient" value="${client.pwd}"/> 
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputCredits">Credits:</label>
                         <div class="controls">
-                            <input id="inputCredits" type="number" name="txtCredits" value="${utilisateurR.credits}"/>
+                            <input id="inputCredits" type="number" name="txtCredits" value="${client.credits}"/>
                         </div>
                     </div>
                     <div class="control-group">
@@ -56,14 +56,14 @@
                         <div class="controls">
                             <select id="inputCategories" name="lstCategories">
                                 <c:forEach var="categorie" items="${lstCategories}">
-                                    <option value="${categorie.name}">${categorie.name}</option>
+                                    <option value="${categorie.idCategorie}">${categorie.libcategorie}</option>
                                 </c:forEach>
                             </select>
                         </div>
                     </div>    
                     <div class="control-group">
                         <div class="controls">
-                            <button type="button" class="btn">Annuler</button>
+                            <button type="reset" class="btn">Annuler</button>
                             <button type="submit" class="btn">Valider</button>
                         </div>
                     </div>

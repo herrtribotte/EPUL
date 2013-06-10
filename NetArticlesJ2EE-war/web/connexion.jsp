@@ -18,7 +18,7 @@
             <div class="span4">
             </div>
             <div class="span4">
-                <form class="form-horizontal">
+                <form action="seconnecter.do" method="POST" class="form-horizontal">
                     <legend>Identification :</legend> 
                     <div class="control-group">
                         <label class="control-label" for="inputEmail">Login:</label>
@@ -36,7 +36,7 @@
                         <div class="controls">
                             <button type="submit" class="btn">Valider</button>
                         </div>
-                        <span class="help-block">Vous souhaitez vous enregistrer ? <a>créer un compte</a></span>
+                        <span class="help-block">Vous souhaitez vous enregistrer ? <a href="creercompte.do">créer un compte</a></span>
                     </div>
                     
                 </form>

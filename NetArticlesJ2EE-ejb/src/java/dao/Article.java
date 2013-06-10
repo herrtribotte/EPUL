@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Michael
  */
 @Entity
-@Table(name = "article", catalog = "net_articles", schema = "")
+@Table(name = "article")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Article.findAll", query = "SELECT a FROM Article a"),
@@ -55,7 +55,7 @@ public class Article implements Serializable {
     private String fichier;
     @JoinColumn(name = "id_domaine", referencedColumnName = "id_domaine")
     @ManyToOne(optional = false)
-    private Domaine idDomaine;
+    private Domaine domaine;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "article")
     private Collection<Achete> acheteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "article")
@@ -121,12 +121,12 @@ public class Article implements Serializable {
         this.fichier = fichier;
     }
 
-    public Domaine getIdDomaine() {
-        return idDomaine;
+    public Domaine getDomaine() {
+        return domaine;
     }
 
-    public void setIdDomaine(Domaine idDomaine) {
-        this.idDomaine = idDomaine;
+    public void setDomaine(Domaine domaine) {
+        this.domaine = domaine;
     }
 
     @XmlTransient
