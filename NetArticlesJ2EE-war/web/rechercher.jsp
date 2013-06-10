@@ -25,7 +25,12 @@
                         <select name="codedomaine" size="1" onchange="javascript: submitform()">
                                 <option value="0">Sélectionner un domaine</option>
                                 <c:forEach items="${domaines}" var="item">
+                                    <c:if test="${codeDomaine == item.idDomaine}">
+                                        <option value="${item.idDomaine }" selected="true">${item.libdomaine }</option>
+                                    </c:if>
+                                    <c:if test="${codeDomaine != item.idDomaine}">
                                         <option value="${item.idDomaine }">${item.libdomaine }</option>
+                                    </c:if>
                                 </c:forEach>
                             </select> 
                     </form>

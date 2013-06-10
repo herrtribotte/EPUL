@@ -15,6 +15,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.Query;
 
 /**
  *
@@ -106,4 +107,19 @@ public class ClientService extends AbstractService<Client>{
             throw e;
         }
     }
+    
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public Client rechercherClientParLoginPw(String login, String pwd) throws Exception {
+        try {
+            Query query = em.createNamedQuery("Client.findByLoginPwdClient");
+            query.setParameter("loginClient", login);
+            query.setParameter("pwdClient", pwd);
+            return (Client)query.getSingleResult();
+
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+            
+    
 }
