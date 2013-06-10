@@ -24,8 +24,8 @@
                             <%@ include file="detailArticle.jspf" %>
                             <div class="control-group">
                                 <div class="controls">
-                                    <button type="button" class="btn">Retour à la recherche</button>
-                                    <button type="submit" class="btn">Ajouter au panier</button>
+                                    <a href="/rechercher.do?codedomaine=${codeDomaine}" class="btn btn-primary">Retour à la recherche</a>
+                                    <a href="/ajouterpanier.do?idarticle=${article.id}" class="btn btn-primary">Ajouter au panier</a>
                                 </div>
                             </div>
                     </div>
