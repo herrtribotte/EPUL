@@ -191,7 +191,7 @@ public class NetArticlesServlet extends HttpServlet {
                 uneSession.removeAttribute("idClient");
                 uneSession.invalidate();
             }
-            pageReponse = "/connexion.jsp";
+            pageReponse = "/connexion.do";
             return (pageReponse);
         } catch (Exception e) {
             throw e;
