@@ -18,7 +18,7 @@
             <div class="span4">
             </div>
             <div class="span4">
-                <form action="connexion.do" method="POST" class="form-horizontal">
+                <form action="seconnecter.do" method="POST" class="form-horizontal">
                     <legend>Identification :</legend> 
                     <div class="control-group">
                         <label class="control-label" for="inputEmail">Login:</label>

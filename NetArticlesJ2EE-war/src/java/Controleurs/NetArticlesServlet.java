@@ -57,10 +57,7 @@ public class NetArticlesServlet extends HttpServlet {
         erreur = "";
         try {
             demande = getDemande(request);
-            if (demande.equalsIgnoreCase("accueil.do")) {
-                pageReponse = acceuil(request);
-            }
-            else if (demande.equalsIgnoreCase("rechercher.do")) {
+            if (demande.equalsIgnoreCase("rechercher.do")) {
                 pageReponse = rechercher(request);
             }
             else if (demande.equalsIgnoreCase("deconnexion.do")) {
@@ -89,6 +86,8 @@ public class NetArticlesServlet extends HttpServlet {
             }
             else if (demande.equalsIgnoreCase("detailarticle.do")) {
                pageReponse = detailarticle(request);
+            } else {
+                pageReponse = acceuil(request);
             }
         } catch (Exception e) {
             erreur = e.getMessage();

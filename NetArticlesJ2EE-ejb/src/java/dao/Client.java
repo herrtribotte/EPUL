@@ -31,6 +31,10 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @TableGenerator(name = "parametre", table = "parametre", 
+            pkColumnName = "id_parametre", valueColumnName = "valparametre", 
+            pkColumnValue = "CLIENT", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "parametre")
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_client")
