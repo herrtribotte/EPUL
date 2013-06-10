@@ -24,25 +24,25 @@
                     <div class="control-group">
                         <label class="control-label" for="inputIdentite">Identité:</label>
                         <div class="controls">
-                            <input id="inputIdentite" type="text" name="txtIdentiteClient" value="${client.identite}"/>
+                            <input id="inputIdentite" type="text" name="txtIdentiteClient" value="${client.identiteClient}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputAdresse">Adresse:</label>
                         <div class="controls">
-                            <input id="inputAdresse" type="text" name="txtAdresseClient" value="${client.adresse}"/>
+                            <input id="inputAdresse" type="text" name="txtAdresseClient" value="${client.adresseClient}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputLogin">Login:</label>
                         <div class="controls">
-                            <input id="inputLogin" type="text" name="txtLoginClient" value="${client.login}"/>  
+                            <input id="inputLogin" type="text" name="txtLoginClient" value="${client.loginClient}"/>  
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputPwd">Mot de passe:</label>
                         <div class="controls">
-                            <input id="inputPwd" type="text" name="txtPwdClient" value="${client.pwd}"/> 
+                            <input id="inputPwd" type="text" name="txtPwdClient" value="${client.pwdClient}"/> 
                         </div>
                     </div>
                     <div class="control-group">
@@ -56,7 +56,12 @@
                         <div class="controls">
                             <select id="inputCategories" name="lstCategories">
                                 <c:forEach var="categorie" items="${lstCategories}">
-                                    <option value="${categorie.idCategorie}">${categorie.libcategorie}</option>
+                                    <c:if test="${categorie.idCategorie == client.categorie.idCategorie}">
+                                        <option value="${categorie.idCategorie}" selected="true">${categorie.libcategorie}</option>
+                                    </c:if>
+                                    <c:if test="${categorie.idCategorie != client.categorie.idCategorie}">
+                                        <option value="${categorie.idCategorie}">${categorie.libcategorie}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </div>

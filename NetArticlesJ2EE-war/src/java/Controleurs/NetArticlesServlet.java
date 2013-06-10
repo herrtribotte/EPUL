@@ -222,6 +222,7 @@ public class NetArticlesServlet extends HttpServlet {
                 Integer idClient = (Integer) uneSession.getAttribute("idClient");
                 Client unClient = clientService.rechercherParId(idClient);
                 request.setAttribute("client", unClient);
+                request.setAttribute("lstCategories", categorieService.rechercherTout());
                 pageReponse = "/compteUtilisateur.jsp";
             } else {
                 pageReponse = "/connexion.jsp";
