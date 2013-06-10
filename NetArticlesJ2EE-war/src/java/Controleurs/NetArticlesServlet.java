@@ -206,7 +206,7 @@ public class NetArticlesServlet extends HttpServlet {
         try {
             HttpSession uneSession = request.getSession();
             if (uneSession != null && uneSession.getAttribute("idClient") != null) {
-                pageReponse = "/index.jsp";
+                pageReponse = "/accueil.do";
             } else {
                 pageReponse = "/connexion.jsp";
             }
@@ -263,7 +263,7 @@ public class NetArticlesServlet extends HttpServlet {
                     erreur = "Login et mot de passe incorrect";
                     return "/connexion.jsp";
                 }
-                pageReponse = "index.jsp";
+                pageReponse = "accueil.do";
             } else {
                 request.setAttribute("txtLogin", login);
                 erreur = "Vous devez saisir le login et mot de passe";
