@@ -22,9 +22,6 @@ import javax.ejb.TransactionManagementType;
 @LocalBean
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class CategorieService extends AbstractService<Categorie>{
-
-    @PersistenceContext(unitName = "NetArticlesJ2EE-ejbPU")
-    private EntityManager em;
     
     public CategorieService() {
         super(Categorie.class);

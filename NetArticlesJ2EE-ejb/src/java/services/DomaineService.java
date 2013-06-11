@@ -20,9 +20,6 @@ import javax.ejb.TransactionManagementType;
 @LocalBean
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class DomaineService extends AbstractService<Domaine>{
-
-    @PersistenceContext(unitName = "NetArticlesJ2EE-ejbPU")
-    private EntityManager em;
     
     public DomaineService() {
         super(Domaine.class);

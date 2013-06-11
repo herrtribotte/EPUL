@@ -67,7 +67,7 @@
                                     <a href="article.do?id=${item.idArticle }">Résumé</a>
                                 </td>
                                 <td>
-                                    <a href="choisir.do?id=${item.idArticle }">Choisir</a>
+                                    <a href="ajoutpanier.do?id=${item.idArticle }">Choisir</a>
                                 </td>
                             </tr>
                         </c:forEach>

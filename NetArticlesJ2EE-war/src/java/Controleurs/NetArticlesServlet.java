@@ -8,7 +8,9 @@ import dao.Article;
 import dao.Client;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,6 +41,9 @@ public class NetArticlesServlet extends HttpServlet {
     
     @EJB
     CategorieService categorieService;
+    
+    @EJB
+    AcheteService acheteService;
     
     /**
      * Processes requests for both HTTP
@@ -84,12 +89,13 @@ public class NetArticlesServlet extends HttpServlet {
             else if (demande.equalsIgnoreCase("monpanier.do")) {
                pageReponse = monpanier(request);
             }
+            else if (demande.equalsIgnoreCase("ajoutpanier.do")) {
+               pageReponse = ajoutpanier(request);
+            }
             else if (demande.equalsIgnoreCase("mesarticles.do")) {
                pageReponse = mesarticles(request);
             }
-            else if (demande.equalsIgnoreCase("detailarticle.do")) {
-               pageReponse = detailarticle(request);
-            } else {
+            else {
                 pageReponse = acceuil(request);
             }
         } catch (Exception e) {
@@ -236,16 +242,46 @@ public class NetArticlesServlet extends HttpServlet {
         }
     }
 
-    private String monpanier(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private String monpanier(HttpServletRequest request) throws Exception {
+        String pageReponse;
+        try {
+            HttpSession uneSession = request.getSession();
+            
+            if (uneSession != null && uneSession.getAttribute("idClient") != null && uneSession.getAttribute("MonPanier") != null) {
+                Integer idClient = (Integer) uneSession.getAttribute("idClient");
+                Client unClient = clientService.rechercherParId(idClient);
+                Map<Integer, Article> lstArticles = (Map<Integer, Article>) uneSession.getAttribute("MonPanier");
+                
+                request.setAttribute("articles", lstArticles.values());
+                request.setAttribute("client", unClient);
+                
+                pageReponse = "/panier.jsp";
+            } else {
+                pageReponse = "/connexion.jsp";
+            }
+            return pageReponse;
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
-    private String mesarticles(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private String detailarticle(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private String mesarticles(HttpServletRequest request) throws Exception {
+        String pageReponse;
+        try {
+            HttpSession uneSession = request.getSession();
+            List<Article> lstArticles = null;
+            if (uneSession != null && uneSession.getAttribute("idClient") != null) {
+                Integer idClient = (Integer) uneSession.getAttribute("idClient");
+                lstArticles = acheteService.rechercherParClient(idClient);
+            }
+            request.setAttribute("lstArticles", lstArticles);
+            
+            pageReponse = "/mesarticles.jsp";
+            
+            return pageReponse;
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     private String seconnecter(HttpServletRequest request) throws Exception{
@@ -259,6 +295,7 @@ public class NetArticlesServlet extends HttpServlet {
                 try {
                     unClient = clientService.rechercherClientParLoginPw(login, pw);
                     uneSession.setAttribute("idClient", unClient.getIdClient());
+                    uneSession.setAttribute("MonPanier", new HashMap<Integer, Article>());
                 } catch (Exception e) {
                     request.setAttribute("txtLogin", login);
                     erreur = "Login et mot de passe incorrect";
@@ -302,12 +339,12 @@ public class NetArticlesServlet extends HttpServlet {
                 Integer idCategorie = new Integer(sIdCategorie);
                 Integer credit = new Integer(credits);
                 if (uneSession != null && uneSession.getAttribute("idClient") != null) {
-                    Integer idClient = (Integer) request.getAttribute("idClient");
+                    Integer idClient = (Integer) uneSession.getAttribute("idClient");
                     clientService.modifierClient(idClient, idCategorie, nom, adresse, credit, login, pw);
                 } else {
                     clientService.ajouterClient(idCategorie, nom, adresse, credit, login, pw);
                 }
-                return "index.jsp";
+                return "accueil.do";
             }
             request.setAttribute("txtIdentiteClient", nom);
             request.setAttribute("txtAdresseClient", adresse);
@@ -353,6 +390,28 @@ public class NetArticlesServlet extends HttpServlet {
             request.setAttribute("article", article);
             
             pageReponse = "/article.jsp";
+            
+            return pageReponse;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    private String ajoutpanier(HttpServletRequest request) throws Exception{
+        String pageReponse;
+        try {
+            HttpSession uneSession = request.getSession();
+            Map<Integer,Article> monPanier;
+            if (uneSession != null && uneSession.getAttribute("idClient") != null) {
+                monPanier = (HashMap<Integer, Article>) uneSession.getAttribute("MonPanier");
+                Integer idArticle = Integer.valueOf(request.getParameter("id"));
+                if (idArticle != null && !monPanier.containsKey(idArticle)) {
+                    Article unArticle = articleService.rechercherParId(idArticle);
+                    monPanier.put(unArticle.getIdArticle(), unArticle);
+                }
+                uneSession.setAttribute("MonPanier", monPanier);
+            }            
+            pageReponse = "/monpanier.do";
             
             return pageReponse;
         } catch (Exception e) {

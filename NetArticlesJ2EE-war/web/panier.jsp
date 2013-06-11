@@ -44,7 +44,7 @@
                                     ${article.prix}
                                 </th>
                                 <th>
-                                    <button onclick="${article.idArticle}" type="button" class="btn">Retirer</button>
+                                    <a href="${article.idArticle}" class="btn btn-primary">Retirer</a>
                                 </th>
                             </tr>
                         </c:forEach>

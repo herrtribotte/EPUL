@@ -11,11 +11,14 @@ import dao.AchetePK;
 import dao.Article;
 import dao.Client;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.Query;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -52,5 +55,11 @@ public class AcheteService extends AbstractService<Achete> {
         } catch (Exception e) {
             throw e;
         }
+    }
+    
+    public List<Article> rechercherParClient(Integer idClient) {
+        Query query = getEntityManager().createNamedQuery("Achete.findByIdClient");
+        query.setParameter("idClient", idClient);
+        return (List<Article>) query.getResultList();
     }
 }

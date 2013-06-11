@@ -25,9 +25,6 @@ import javax.persistence.Query;
 @LocalBean
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class ClientService extends AbstractService<Client>{
-
-    @PersistenceContext(unitName = "NetArticlesJ2EE-ejbPU")
-    private EntityManager em;
     
     @EJB
     private CategorieService categorieService;
@@ -111,7 +108,7 @@ public class ClientService extends AbstractService<Client>{
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Client rechercherClientParLoginPw(String login, String pwd) throws Exception {
         try {
-            Query query = em.createNamedQuery("Client.findByLoginPwdClient");
+            Query query = getEntityManager().createNamedQuery("Client.findByLoginPwdClient");
             query.setParameter("loginClient", login);
             query.setParameter("pwdClient", pwd);
             return (Client)query.getSingleResult();
